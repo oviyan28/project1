@@ -7,6 +7,7 @@ import com.oviya.Dao.ProductDao;
 import com.oviya.models.Product;
 
 @Service
+
 @Transactional
 public class ProductServiceImpl implements ProductService {
 @Autowired
