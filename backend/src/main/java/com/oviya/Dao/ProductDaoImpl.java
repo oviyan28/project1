@@ -1,47 +1,59 @@
 package com.oviya.Dao;
+
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
-import org.hibernate.Transaction;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.oviya.model.Product;
+import com.oviya.models.Product;
 @Repository
 @Transactional
-public class ProductDaoImpl implements ProductDao{
+@Component
+public class ProductDaoImpl implements ProductDao {
 	@Autowired
-	SessionFactory sessionFactory;
-	
+	private SessionFactory sessionFactory;
 
 	public ProductDaoImpl() {
-		System.out.println("ProductDao bean is created");
-	}
-		public void addProduct(Product Product) {
-			try {
-		Session session=sessionFactory.openSession();
-		session.save(Product);
-		session.close();
-			}
-			catch(Exception e)
-			{
-				System.out.println(e);
-			}
-			
-		//Transaction tx=session.beginTransaction();
+		System.out.println("ProductDaoImpl Bean is created");
 		
-		//tx.commit();
-		//session.flush();
+	}
+
+	@Override
+	public void addProduct(Product Product) {
+		Session session=sessionFactory.getCurrentSession();
+		session.save(Product);
+		 
 		
 
+	}
+
+	@Override
+	public void updateProduct(Product Product) {
 		
-				}
-		public void updateProduct(Product Product) {
-			Session session=sessionFactory.openSession();
-			session.update(Product);
-			session.flush();
-				}
-		// TODO Auto-generated constructor stub
-	
+		Session session=sessionFactory.getCurrentSession();
+		session.update(Product);
+		
+	}
+
+	@Override
+	public Product getProduct(int id) {
+		Session session=sessionFactory.getCurrentSession();
+		Product product=(Product)session.get(Product.class,id);
+		return product;
+		
+		
+	}
+
+	@Override
+	public void deleteProduct(int id) {
+		Session session=sessionFactory.getCurrentSession();
+		Product product=(Product)session.get(Product.class,id);
+		
+		session.delete(product);
+		// TODO Auto-generated method stub
+		
+	}
 
 }

@@ -9,14 +9,16 @@ import org.springframework.orm.hibernate4.LocalSessionFactoryBuilder;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 
-import com.oviya.model.Product;
+import com.oviya.models.Product;
 
 import org.apache.commons.dbcp.BasicDataSource;
 import org.hibernate.SessionFactory;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 
 @Configuration
+@ComponentScan(basePackages={"com.oviya.Dao","com.oviya.models","com.oviya.Services"})
 public class DatabaseConfiguration {
 	public DatabaseConfiguration() {
 		System.out.println("DatabaseConfiguration bean is created");
