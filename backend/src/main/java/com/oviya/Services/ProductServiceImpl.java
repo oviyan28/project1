@@ -4,6 +4,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.oviya.Dao.ProductDao;
+import com.oviya.Dao.*;
 import com.oviya.models.Product;
 
 @Service
@@ -11,8 +12,14 @@ import com.oviya.models.Product;
 @Transactional
 public class ProductServiceImpl implements ProductService {
 @Autowired
- ProductDao productDao;
+private ProductDao productDao;
 
+	public ProductDao getProductDao() {
+	return productDao;
+}
+public void setProductDao(ProductDao productDao) {
+	this.productDao = productDao;
+}
 	public ProductServiceImpl() {
 		System.out.println("ProductServiceImpl Bean is created");
 		// TODO Auto-generated constructor stub

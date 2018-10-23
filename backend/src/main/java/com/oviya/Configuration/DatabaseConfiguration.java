@@ -6,6 +6,7 @@ import javax.sql.DataSource;
 
 import org.springframework.orm.hibernate4.HibernateTransactionManager;
 import org.springframework.orm.hibernate4.LocalSessionFactoryBuilder;
+import org.springframework.transaction.annotation.EnableTransactionManagement;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 
@@ -19,6 +20,7 @@ import org.springframework.context.annotation.Configuration;
 
 @Configuration
 @ComponentScan(basePackages={"com.oviya.Dao","com.oviya.models","com.oviya.Services"})
+
 public class DatabaseConfiguration {
 	public DatabaseConfiguration() {
 		System.out.println("DatabaseConfiguration bean is created");
@@ -62,3 +64,4 @@ public class DatabaseConfiguration {
 	}
 
 }
+

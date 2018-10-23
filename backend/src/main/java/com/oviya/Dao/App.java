@@ -19,11 +19,11 @@ public class App
     public static void main( String[] args )
     {
     	
-    	       ApplicationContext context=new AnnotationConfigApplicationContext(DatabaseConfiguration.class,ProductServiceImpl.class,ProductDaoImpl.class);
-    	      ProductDao productDao= (ProductDao)context.getBean("ProductDaoImpl");
-    	    ProductService productService=(ProductService)context.getBean("ProductServiceImpl");
-    	     Product product=productService.getProduct(1);
-           	    System.out.println(product.getProductName());
+    	      AnnotationConfigApplicationContext context=new AnnotationConfigApplicationContext(DatabaseConfiguration.class,ProductDaoImpl.class);
+    	      //ProductDao productDao= (ProductDao)context.getBean("ProductDaoImpl");
+    	    ProductService productService=(ProductService)context.getBean(ProductServiceImpl.class);
+    	     Product product=productService.getProduct(2);
+           	    System.out.println(product.getProductdesc());
            	 // System.out.println(product.getProductdesc());
            	// System.out.println(product.getQuantity());
            //	 System.out.println(product.getPrice());

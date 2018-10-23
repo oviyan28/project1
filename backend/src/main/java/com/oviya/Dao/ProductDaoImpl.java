@@ -2,15 +2,17 @@ package com.oviya.Dao;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.oviya.models.Product;
-@Repository
+
 @Transactional
-@Component
+@Repository
+
 public class ProductDaoImpl implements ProductDao {
 	@Autowired
 	private SessionFactory sessionFactory;
@@ -39,8 +41,12 @@ public class ProductDaoImpl implements ProductDao {
 
 	@Override
 	public Product getProduct(int id) {
-		Session session=sessionFactory.getCurrentSession();
+		//Session session=sessionFactory.getCurrentSession();
+		Session session=sessionFactory.openSession();
+
+		//Transaction st=session.beginTransaction();
 		Product product=(Product)session.get(Product.class,id);
+		//st.commit();
 		return product;
 		
 		
@@ -55,5 +61,6 @@ public class ProductDaoImpl implements ProductDao {
 		// TODO Auto-generated method stub
 		
 	}
+	
 
 }
